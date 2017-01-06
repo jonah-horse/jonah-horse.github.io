@@ -1,7 +1,75 @@
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function() {
+        $("#horse").click(function(e){
+            var horse = $(this);
+            var parentOffset = horse.parent().offset();
+            var relX = e.pageX - parentOffset.left;
+            var relY = e.pageY - parentOffset.top;
+
+            var x = relX / horse.width() * 1440;
+            var y = relY / horse.height() * 1440;
+
+
+            console.log(relX, relY);
+            console.log(x,y);
+
+            if(x >= 1182 && y < 144) {
+            $("#caption").text("Hey Sailor");
+            //sailor-hat.png
+            }
+            else if(x >= 1182 && y < 304) {
+            $("#caption").text("Neigh");
+            }
+            else if(x >= 1306 && y >= 304 && y < 392) {
+                $("#caption").text("Sniffer");
+                //crazy-clipart-horse.png
+            }
+            else if(x >= 396 && x < 738 && y >= 307) {
+                $("#caption").text("Ride the Lightning");
+                //lightning-bolt
+            }
+            else if(x < 396 && y >= 307 && y < 580) {
+                $("#caption").text("This website is horseshit");
+            }
+            else if(x < 396 && y >= 580 && y < 672) {
+                $("#caption").text("Horse Cock!!!");
+            }
+            else {
+                $("#caption").text("A Horse");
+            }
+        });
+});
+</script>
+<style>
+/*
+https://css-tricks.com/text-blocks-over-image/ 
+ */
+h2 span {
+    color: white;
+    font: bold 24px/45px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    background: rgb(0,0,0); /*fallback color*/
+    background: rgba(0,0,0,0.7);
+    padding: 10px;
+}
+#horse {
+    position: relative;
+    width: 100%;
+}
+h2 {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    /*width: 100%;*/
+}
+</style>
 </head>
 <body>
-<img src="real-horse.jpg"/>
+<img id="horse" src="real-horse.jpg"/>
+<h2><span id="caption">A Horse</span></h2>
 </body>
 </html>
